@@ -1,12 +1,13 @@
 # NIT3213 Final Assignment - Android App
 
 ## Overview
-An Android application that authenticates users via the VU NIT3213 API and displays a dashboard of entities retrieved from the server. Users can tap any entity to view its full details.
+An Android application that authenticates users via the VU NIT3213 API and displays a dashboard of fashion entities retrieved from the server. Users can tap any entity to view its full details including description.
 
 ## Features
-- **Login Screen** — Authenticates using POST request to `/sydney/auth`
-- **Dashboard Screen** — Displays entities in a RecyclerView from `/dashboard/{keypass}`
-- **Details Screen** — Shows full entity information including description
+- **Login Screen** — Authenticates using POST request to `/sydney/auth` with input validation
+- **Dashboard Screen** — Displays fashion entities in a RecyclerView from `/dashboard/{keypass}`
+- **Details Screen** — Shows full entity information including all properties and description
+- **Error Handling** — Toast messages and error text for failed API calls or empty input
 
 ## Architecture
 The app follows Clean Architecture principles with the following layers:
@@ -57,8 +58,8 @@ com.example.nit3213app/
 ├── repository/
 │   └── AppRepository.kt       # Data repository
 ├── login/
-│   ├── LoginFragment.kt       # Login UI
-│   └── LoginViewModel.kt      # Login business logic
+│   ├── LoginFragment.kt       # Login UI with input validation
+│   └── LoginViewModel.kt      # Login business logic with error handling
 ├── dashboard/
 │   ├── DashboardFragment.kt   # Dashboard UI with RecyclerView
 │   ├── DashboardViewModel.kt  # Dashboard business logic
