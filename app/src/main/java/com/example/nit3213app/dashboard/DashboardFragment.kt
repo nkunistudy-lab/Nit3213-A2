@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nit3213app.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import android.widget.Toast
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
@@ -61,6 +62,7 @@ class DashboardFragment : Fragment() {
                         if (error != null) {
                             errorText.text = error
                             errorText.visibility = View.VISIBLE
+                            Toast.makeText(context, error, Toast.LENGTH_LONG).show()
                         } else {
                             errorText.visibility = View.GONE
                         }

@@ -24,6 +24,11 @@ class LoginViewModel @Inject constructor(
     val isLoading: StateFlow<Boolean> = _isLoading
 
     fun login(username: String, password: String) {
+        if (username.isBlank() || password.isBlank()) {
+            _errorState.value = "Username and password cannot be empty"
+            return
+        }
+
         viewModelScope.launch {
             _isLoading.value = true
             _errorState.value = null
@@ -31,12 +36,13 @@ class LoginViewModel @Inject constructor(
                 val response = repository.login(username, password)
                 _loginState.value = response.keypass
             } catch (e: Exception) {
-                _errorState.value = "Login failed: ${e.message}"
+                _errorState.value = "Login failed: Check credentials or network"
             } finally {
                 _isLoading.value = false
             }
         }
     }
+
 
     fun resetLoginState() {
         _loginState.value = null

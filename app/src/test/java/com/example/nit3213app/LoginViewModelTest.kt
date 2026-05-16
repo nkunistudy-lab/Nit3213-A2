@@ -81,4 +81,15 @@ class LoginViewModelTest {
         // Then
         assertNull(viewModel.loginState.value)
     }
+    @Test
+    fun `login with empty username shows error`() = runTest(testDispatcher) {
+        // When
+        viewModel = LoginViewModel(repository)
+        viewModel.login("", "password")
+        advanceUntilIdle()
+
+        // Then
+        assertNotNull(viewModel.errorState.value)
+        assertNull(viewModel.loginState.value)
+    }
 }
